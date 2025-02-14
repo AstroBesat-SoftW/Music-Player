@@ -87,8 +87,8 @@
             margin-top: 20px;
             width: 80%;
             max-width: 350px;
-            height: 150px; /* Sabit yükseklik */
-            overflow-y: auto; /* Dikey kaydırma */
+            height: 150px;
+            overflow-y: auto;
             border-radius: 10px;
             background: #1e1e1e;
             padding: 10px;
@@ -145,41 +145,23 @@
     </div>
 
     <script>
-        let songs = [];
+        let songs = [
+            { name: "Şarkı 1", file: "muzik/Sonuna Kadar.mp3", cover: "gorsel/profil.png" },
+            { name: "Şarkı 2", file: "muzik/sarki2.mp3", cover: "gorsel/profil.png" },
+            { name: "Şarkı 3", file: "muzik/sarki3.mp3", cover: "gorsel/profil.png" }
+        ];
         let currentSongIndex = 0;
         const audioPlayer = document.getElementById("audio-player");
         const songTitle = document.getElementById("song-title");
         const songList = document.getElementById("song-list");
-
-        async function loadSongs() {
-            try {
-                const response = await fetch("muzik/");
-                const text = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, "text/html");
-
-                songs = [...doc.querySelectorAll("a")]
-                    .map(a => a.getAttribute("href"))
-                    .filter(name => name.endsWith(".mp3"));
-
-                if (songs.length > 0) {
-                    currentSongIndex = 0;
-                    updatePlaylist();
-                    playSong();
-                } else {
-                    songTitle.innerText = "Müzik bulunamadı!";
-                }
-            } catch (error) {
-                console.error("Şarkılar yüklenirken hata oluştu!", error);
-                songTitle.innerText = "Şarkılar yüklenemedi!";
-            }
-        }
+        const albumCover = document.getElementById("album-cover");
 
         function playSong(index = currentSongIndex) {
             if (songs.length === 0) return;
             currentSongIndex = index;
-            audioPlayer.src = "muzik/" + songs[currentSongIndex];
-            songTitle.innerText = songs[currentSongIndex].replace(/%20/g, " ");
+            audioPlayer.src = songs[currentSongIndex].file;
+            songTitle.innerText = songs[currentSongIndex].name;
+            albumCover.src = songs[currentSongIndex].cover;
             audioPlayer.play();
             highlightPlayingSong();
         }
@@ -206,7 +188,7 @@
             songList.innerHTML = "";
             songs.forEach((song, index) => {
                 let li = document.createElement("li");
-                li.textContent = song.replace(/%20/g, " ");
+                li.textContent = song.name;
                 li.onclick = () => playSong(index);
                 songList.appendChild(li);
             });
@@ -220,7 +202,8 @@
         }
 
         audioPlayer.addEventListener("ended", nextSong);
-        loadSongs();
+        updatePlaylist();
+        playSong();
     </script>
 
 </body>
