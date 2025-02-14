@@ -127,7 +127,7 @@
     <div class="container">
         <div class="player">
             <div class="cover">
-                <img id="album-cover" src="gorsel/gorsel.png" alt="Albüm Kapağı">
+                <img id="album-cover" src="./gorsel/gorsel.png" alt="Albüm Kapağı">
             </div>
             <h2 id="song-title">Şarkı Yükleniyor...</h2>
             <audio id="audio-player" controls></audio>
@@ -178,7 +178,7 @@
         function playSong(index = currentSongIndex) {
             if (songs.length === 0) return;
             currentSongIndex = index;
-            audioPlayer.src = "muzik/" + songs[currentSongIndex];
+            audioPlayer.src = "./muzik/" + songs[currentSongIndex];
             songTitle.innerText = songs[currentSongIndex].replace(/%20/g, " ");
             audioPlayer.play();
             highlightPlayingSong();
