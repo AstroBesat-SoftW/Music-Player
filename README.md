@@ -24,6 +24,11 @@ Başka bir platform kullanmadan nasıl müzik çalar yapabilirim diye düşüner
 
 ---
 
+![Music Player 1](https://github.com/user-attachments/assets/a9bfceb1-7fdd-4d3d-8d05-97034c94b9bc)  
+
+![Music Player 2](https://github.com/user-attachments/assets/fdd76898-cb6c-4264-b62f-6922f8d752f7)  
+
+
 ## 📸 Ekran Görüntüleri  
 
 ![Music Player 1](https://github.com/user-attachments/assets/a9bfceb1-7fdd-4d3d-8d05-97034c94b9bc)  
